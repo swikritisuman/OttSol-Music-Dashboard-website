@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Music Analytics Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- PapaParse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+    <!-- JS -->
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+      <div class="nav-logo">
+        <h2>Music<span>Analytics</span></h2>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#reports">Reports</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-profile">
+        <img
+          src="images\profile.jpeg"
+          alt="user"
+          class="profile-img"
+        />
+      </div>
+    </header>
+
+    <!-- ============== HERO SECTION ============== -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Music Analytics Dashboard</h1>
+        <p>Visualizing Your Streaming Data Across Airtel, Wynk & JioSaavn.</p>
+        <a href="#dashboard" class="hero-btn">View Dashboard</a>
+      </div>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <main id="dashboard" class="main-content">
+      <!-- SUMMARY CARDS -->
+      <section class="cards-grid">
+        <div class="card">
+          <h3 class="card-title">Total Streams</h3>
+          <p class="card-value">12.4M</p>
+          <p class="card-change">+8.2% vs last month</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Total Revenue</h3>
+          <p class="card-value">₹ 18.6L</p>
+          <p class="card-change">+3.4% vs last month</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Active DSPs</h3>
+          <p class="card-value">7</p>
+          <p class="card-change">All healthy</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Top Country</h3>
+          <p class="card-value">India</p>
+          <p class="card-change">62% of total streams</p>
+        </div>
+      </section>
+
+      <!-- CHARTS SECTION -->
+      <section class="charts-grid">
+        <!-- MONTH REVENUE -->
+        <div class="card chart-card">
+          <div class="card-header">
+            <h3>Month-wise Revenue</h3>
+            <span class="chip">Bar Chart</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+
+        <!-- DSP PERFORMANCE -->
+        <div class="card chart-card">
+          <div class="card-header">
+            <h3>DSP Performance</h3>
+            <span class="chip">Line Chart</span>
+          </div>
+          <div class="chart-wrapper">
+            <div id="dspLoading" class="chart-loader">Loading DSP Data...</div>
+            <canvas id="dspChart" style="display: none"></canvas>
+          </div>
+        </div>
+
+        <!-- COUNTRY STREAMS -->
+        <div class="card chart-card">
+          <div class="card-header">
+            <h3>Country-wise Streams</h3>
+            <span class="chip">Pie Chart</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="countryChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- TABLES SECTION -->
+      <section class="tables-section">
+        <div class="card">
+          <h3 class="card-title">Top Artists</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Artist</th>
+                <th>Streams</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Artist A</td>
+                <td>1.2M</td>
+                <td>₹ 2.3L</td>
+              </tr>
+              <tr>
+                <td>Artist B</td>
+                <td>980K</td>
+                <td>₹ 1.9L</td>
+              </tr>
+              <tr>
+                <td>Artist C</td>
+                <td>730K</td>
+                <td>₹ 1.2L</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Top Albums</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Album</th>
+                <th>DSP</th>
+                <th>Streams</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Album X</td>
+                <td>Spotify</td>
+                <td>520K</td>
+              </tr>
+              <tr>
+                <td>Album Y</td>
+                <td>JioSaavn</td>
+                <td>410K</td>
+              </tr>
+              <tr>
+                <td>Album Z</td>
+                <td>Wynk</td>
+                <td>350K</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============== CONTACT SECTION ============== -->
+      <section id="contact" class="contact-section">
+        <h2 class="contact-title">Get in Touch</h2>
+        <p class="contact-sub">
+          I’d love to connect! You can reach me easily using the options below.
+        </p>
+
+        <div class="contact-container">
+          <!-- Left Info -->
+          <div class="contact-left">
+            <h3>Contact Information</h3>
+
+            <div class="info-item">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+                class="info-icon"
+              />
+              <div>
+                <p class="info-label">Email</p>
+                <p class="info-value">swikritis.cse.jisu22@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png"
+                class="info-icon"
+              />
+              <div>
+                <p class="info-label">LinkedIn</p>
+                <p class="info-value">
+                  <a
+                    href="https://www.linkedin.com/in/swikriti-suman-27b549226/"
+                    target="_blank"
+                  >
+                    linkedin.com/in/swikriti-suman
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/724/724664.png"
+                class="info-icon"
+              />
+              <div>
+                <p class="info-label">Phone</p>
+                <p class="info-value">9608303369</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Form -->
+         <form 
+  id="contactForm"
+  class="contact-form"
+  action="https://formspree.io/f/mpwgdynv"
+  method="POST"
+>
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+
+  <button type="submit">Send Message</button>
+
+  <!-- Success Message -->
+  <p id="form-status" style="margin-top:10px; color:green; display:none;">
+    Message sent successfully!
+  </p>
+</form>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2025 Made By Swikriti Suman</p>
+    </footer>
+  </body>
+</html>
